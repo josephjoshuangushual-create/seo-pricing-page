@@ -1,34 +1,54 @@
+// src/components/ui/button.tsx
 import * as React from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type Variant = "default" | "outline";
+type Size = "sm" | "md" | "lg";
+
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   asChild?: boolean;
-  variant?: "solid" | "outline";
-  size?: "md" | "lg";
-}
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  children: React.ReactNode;
+};
+
+const base =
+  "inline-flex items-center justify-center rounded-2xl font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed";
+
+const variants: Record<Variant, string> = {
+  default: "bg-[#1b2a4a] text-white hover:bg-[#16233d]",
+  outline: "border border-[#1b2a4a] text-[#1b2a4a] hover:bg-[#e9f1ff]",
+};
+
+const sizes: Record<Size, string> = {
+  sm: "px-3 py-2 text-sm",
+  md: "px-4 py-2.5 text-sm",
+  lg: "px-5 py-3 text-base",
+};
 
 export function Button({
   asChild,
-  variant = "solid",
+  variant = "default",
   size = "md",
   className = "",
   children,
   ...props
 }: ButtonProps) {
-  const base =
-    "rounded-2xl font-medium transition-colors duration-200 active:scale-[.98]";
-  const sizes = {
-    md: "px-4 py-2 text-sm",
-    lg: "px-5 py-3 text-base",
-  };
-  const solid = "bg-[#1b2a4a] hover:bg-[#16233d] text-white shadow-sm";
-  const outline = "border border-[#1b2a4a] text-[#1b2a4a] hover:bg-[#e9f1ff]";
+  const cls = [base, variants[variant], sizes[size], className].join(" ");
 
-  const styles = `${base} ${sizes[size]} ${variant === "outline" ? outline : solid} ${className}`;
+  if (asChild && React.isValidElement(children)) {
+    // Clone the child (e.g. <a>) and inject our classes/props
+    return React.cloneElement(children as React.ReactElement, {
+      className: [cls, (children as any).props?.className || ""].join(" "),
+      ...props,
+    });
+  }
 
-  if (asChild) return <span className={styles}>{children}</span>;
   return (
-    <button className={styles} {...props}>
+    <button className={cls} {...props}>
       {children}
     </button>
   );
 }
+
+export default Button;
