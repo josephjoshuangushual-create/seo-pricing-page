@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
@@ -9,9 +11,9 @@ import { CheckCircle2, Search, PenTool, TrendingUp, Rocket } from "lucide-react"
 
 /**
  * SEO Pricing Landing Page (React + Tailwind) — JS version
- * - Mobile polish (full-width CTAs on mobile, tighter spacing, scrollable table)
- * - ROI inputs: black text
- * - “See Packages” anchors to #packages
+ * - All sections included
+ * - Growth card has green "Best Value" badge
+ * - Final CTA "See Packages" anchors to #packages
  */
 
 // ---------- shared helpers ----------
@@ -27,8 +29,7 @@ const Section = ({ id, children, className = "" }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.2 }}
     transition={{ duration: 0.5 }}
-    // MOBILE: a bit less top padding, better anchor offset on phones
-    className={`scroll-mt-24 py-12 md:py-24 ${className}`}
+    className={`scroll-mt-32 py-16 md:py-24 ${className}`}
   >
     {children}
   </motion.section>
@@ -153,8 +154,7 @@ export default function SEOPricingLandingPage() {
           className="absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_50%_10%,rgba(59,130,246,0.25),transparent_60%),linear-gradient(to_bottom,#0B1224,rgba(11,18,36,0.92))]"
         />
         <Container>
-          {/* MOBILE: fluid heading size */}
-          <h1 className="text-[clamp(28px,7vw,56px)] md:text-6xl font-bold mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
             <span className="inline-block align-top whitespace-nowrap" style={{ minWidth: `${longest}ch` }}>
               {typedIndex === 2 && typedPhase !== "erase" ? (
                 <>
@@ -169,21 +169,12 @@ export default function SEOPricingLandingPage() {
           <p className="mb-8 text-lg md:text-xl text-slate-200/90">
             Transparent pricing, proven results, no long-term contracts.
           </p>
-          {/* MOBILE: full-width buttons; normal on sm+ */}
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button asChild className={`${btnPrimary} w-full sm:w-auto`}>
+            <Button asChild size="lg" className={btnPrimary}>
               <a href="https://calendly.com/josephjoshua/discovery-call">Book My Free SEO Call</a>
             </Button>
-            <Button asChild variant="outline" className={`${btnSecondary} w-full sm:w-auto`}>
-              <a
-                href="#packages"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo("packages");
-                }}
-              >
-                See Packages
-              </a>
+            <Button asChild size="lg" variant="outline" className={btnSecondary}>
+              <a href="#packages" onClick={(e) => { e.preventDefault(); goTo('packages'); }}>See Packages</a>
             </Button>
           </div>
         </Container>
@@ -210,14 +201,13 @@ export default function SEOPricingLandingPage() {
       <Section id="packages" className="bg-slate-50/70 dark:bg-slate-950/40">
         <Container>
           <h2 className="text-3xl font-bold mb-12 text-center text-slate-900 dark:text-white">SEO Packages</h2>
-          {/* MOBILE: slightly tighter gap; 3 cols on md+ */}
-          <div className="grid gap-6 md:gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
             {/* Growth */}
             <Card className="relative transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(2,6,23,0.25)]">
               <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white shadow-[0_0_18px_rgba(22,163,74,0.45)]">
                 Best Value
               </Badge>
-              <CardContent className="p-5 sm:p-6">
+              <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Growth</h3>
                 <Price amount={1500} />
                 <ul className="mt-6 space-y-3 text-sm">
@@ -241,7 +231,7 @@ export default function SEOPricingLandingPage() {
               <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white shadow-[0_0_18px_rgba(37,99,235,0.45)]">
                 Most Popular
               </Badge>
-              <CardContent className="p-5 sm:p-6">
+              <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Authority</h3>
                 <Price amount={3745} />
                 <ul className="mt-6 space-y-3 text-sm">
@@ -262,17 +252,16 @@ export default function SEOPricingLandingPage() {
 
             {/* Custom */}
             <Card className="transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(2,6,23,0.25)]">
-              <CardContent className="p-5 sm:p-6">
+              <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Custom</h3>
                 <p className="text-slate-700 dark:text-slate-300">
                   Flexible scope tailored to your business. Contact us to design a plan that fits your needs.
                 </p>
-                {/* MOBILE: stack buttons */}
-                <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <Button asChild className={`${btnPrimary} w-full sm:w-auto`}>
+                <div className="mt-6 flex gap-3">
+                  <Button asChild className={btnPrimary}>
                     <a href="https://calendly.com/josephjoshua/discovery-call">Start Custom</a>
                   </Button>
-                  <Button asChild variant="outline" className={`${btnSecondary} w-full sm:w-auto`}>
+                  <Button asChild variant="outline" className={btnSecondary}>
                     <a href="#compare">Compare Plans</a>
                   </Button>
                 </div>
@@ -287,63 +276,60 @@ export default function SEOPricingLandingPage() {
       <Section id="compare" className="bg-white/70 dark:bg-slate-950/30">
         <Container>
           <h2 className="text-3xl font-bold mb-8 text-center text-slate-900 dark:text-white">Compare Plans</h2>
-          {/* MOBILE: horizontal scroll wrapper */}
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
-            <table className="min-w-[700px] w-full text-left border-collapse overflow-hidden rounded-xl">
-              <thead className="border-b bg-slate-100/70 dark:bg-slate-800/70 backdrop-blur text-slate-900 dark:text-white">
-                <tr>
-                  <th className="p-4">Feature</th>
-                  <th className="p-4">Growth</th>
-                  <th className="p-4">Authority</th>
-                  <th className="p-4">Custom</th>
-                </tr>
-              </thead>
-              <tbody className="text-slate-800 dark:text-slate-200">
-                <tr>
-                  <td className="p-4">SEO Audit & Strategy</td>
-                  <td className="p-4">Included</td>
-                  <td className="p-4">Included</td>
-                  <td className="p-4">Included</td>
-                </tr>
-                <tr className="bg-black/[.02] dark:bg-white/[.04]">
-                  <td className="p-4">On-Page SEO</td>
-                  <td className="p-4">Included</td>
-                  <td className="p-4">Included</td>
-                  <td className="p-4">Optional</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Technical SEO</td>
-                  <td className="p-4">—</td>
-                  <td className="p-4">Included</td>
-                  <td className="p-4">Optional</td>
-                </tr>
-                <tr className="bg-black/[.02] dark:bg:white/[.04]">
-                  <td className="p-4">Content SEO</td>
-                  <td className="p-4">2–4/mo</td>
-                  <td className="p-4">Scale</td>
-                  <td className="p-4">As scoped</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Local SEO</td>
-                  <td className="p-4">Basic</td>
-                  <td className="p-4">Multi-location</td>
-                  <td className="p-4">As scoped</td>
-                </tr>
-                <tr className="bg-black/[.02] dark:bg-white/[.04]">
-                  <td className="p-4">Off-Page SEO</td>
-                  <td className="p-4">Link outreach</td>
-                  <td className="p-4">PR + Links</td>
-                  <td className="p-4">As scoped</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Reporting</td>
-                  <td className="p-4">Monthly + Quarterly</td>
-                  <td className="p-4">Monthly + Quarterly ROI</td>
-                  <td className="p-4">Flexible</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table className="w-full text-left border-collapse overflow-hidden rounded-xl">
+            <thead className="border-b bg-slate-100/70 dark:bg-slate-800/70 backdrop-blur text-slate-900 dark:text-white">
+              <tr>
+                <th className="p-4">Feature</th>
+                <th className="p-4">Growth</th>
+                <th className="p-4">Authority</th>
+                <th className="p-4">Custom</th>
+              </tr>
+            </thead>
+            <tbody className="text-slate-800 dark:text-slate-200">
+              <tr>
+                <td className="p-4">SEO Audit & Strategy</td>
+                <td className="p-4">Included</td>
+                <td className="p-4">Included</td>
+                <td className="p-4">Included</td>
+              </tr>
+              <tr className="bg-black/[.02] dark:bg-white/[.04]">
+                <td className="p-4">On-Page SEO</td>
+                <td className="p-4">Included</td>
+                <td className="p-4">Included</td>
+                <td className="p-4">Optional</td>
+              </tr>
+              <tr>
+                <td className="p-4">Technical SEO</td>
+                <td className="p-4">—</td>
+                <td className="p-4">Included</td>
+                <td className="p-4">Optional</td>
+              </tr>
+              <tr className="bg-black/[.02] dark:bg-white/[.04]">
+                <td className="p-4">Content SEO</td>
+                <td className="p-4">2–4/mo</td>
+                <td className="p-4">Scale</td>
+                <td className="p-4">As scoped</td>
+              </tr>
+              <tr>
+                <td className="p-4">Local SEO</td>
+                <td className="p-4">Basic</td>
+                <td className="p-4">Multi-location</td>
+                <td className="p-4">As scoped</td>
+              </tr>
+              <tr className="bg-black/[.02] dark:bg-white/[.04]">
+                <td className="p-4">Off-Page SEO</td>
+                <td className="p-4">Link outreach</td>
+                <td className="p-4">PR + Links</td>
+                <td className="p-4">As scoped</td>
+              </tr>
+              <tr>
+                <td className="p-4">Reporting</td>
+                <td className="p-4">Monthly + Quarterly</td>
+                <td className="p-4">Monthly + Quarterly ROI</td>
+                <td className="p-4">Flexible</td>
+              </tr>
+            </tbody>
+          </table>
         </Container>
         <Divider />
       </Section>
@@ -406,28 +392,12 @@ export default function SEOPricingLandingPage() {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
               <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 w-full max-w-md">
                 <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">ROI Calculator</h3>
-
-                {/* ROI inputs: force black text */}
                 <label className="block mb-2 text-sm">Monthly Visitors</label>
-                <input
-  type="number"
-  value={visitors}
-  onChange={(e) => setVisitors(Number(e.target.value))}
-  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
-/>
-<input
-  type="number"
-  value={conversion}
-  onChange={(e) => setConversion(Number(e.target.value))}
-  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
-/>
-<input
-  type="number"
-  value={value}
-  onChange={(e) => setValue(Number(e.target.value))}
-  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
-/>
-
+                <input type="number" value={visitors} onChange={(e) => setVisitors(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
+                <label className="block mb-2 text-sm">Conversion Rate (%)</label>
+                <input type="number" value={conversion} onChange={(e) => setConversion(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
+                <label className="block mb-2 text-sm">Value per Lead ($)</label>
+                <input type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
                 <p className="mt-2 text-slate-800 dark:text-slate-200">Estimated Leads: {leads}</p>
                 <p className="mb-4 text-slate-800 dark:text-slate-200">Estimated Revenue: ${revenue}</p>
                 <div className="flex justify-end gap-3">
@@ -445,28 +415,12 @@ export default function SEOPricingLandingPage() {
         <Container>
           <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl text-white">Our Process</h2>
           <div className="relative mx-auto max-w-4xl" ref={containerRef}>
-            {/* MOBILE: hide the center line to avoid overflow */}
-            <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-slate-700 hidden md:block" />
-            <div
-              className="absolute left-1/2 z-20 hidden h-6 w-6 -translate-x-1/2 rounded-full border-4 border-[#0b1224] bg-blue-500 shadow-[0_0_0_6px_rgba(30,64,175,0.15)] md:block animate-pulse"
-              style={{ top: `${dotPos}px`, transition: "top 400ms ease-in-out" }}
-            />
+            <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-slate-700" />
+            <div className="absolute left-1/2 z-20 hidden h-6 w-6 -translate-x-1/2 rounded-full border-4 border-[#0b1224] bg-blue-500 shadow-[0_0_0_6px_rgba(30,64,175,0.15)] md:block animate-pulse" style={{ top: `${dotPos}px`, transition: "top 400ms ease-in-out" }} />
             {steps.map((step, i) => (
-              <div
-                key={i}
-                data-index={i}
-                className={`mb-24 flex w-full items-center justify-between ${
-                  i % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
-              >
+              <div key={i} data-index={i} className={`mb-24 flex w-full items-center justify-between ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
                 <div className="w-5/12">
-                  <Card
-                    className={`rounded-2xl border p-6 shadow-md transition-all duration-300 ${
-                      activeStep === i
-                        ? "bg-blue-600 text-white border-blue-400 shadow-lg"
-                        : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300"
-                    }`}
-                  >
+                  <Card className={`rounded-2xl border p-6 shadow-md transition-all duration-300 ${activeStep === i ? "bg-blue-600 text-white border-blue-400 shadow-lg" : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300"}`}>
                     <CardContent className="p-0">
                       <h3 className="mb-2 text-lg font-semibold">{step.title}</h3>
                       <p className="text-sm">{step.body}</p>
@@ -491,19 +445,11 @@ export default function SEOPricingLandingPage() {
               { name: "Marcus T.", role: "B2B SaaS", quote: "Technical cleanup + content clusters unlocked rankings we chased for a year. Consistent leads every week now." },
               { name: "Lena K.", role: "Multi-location Clinic", quote: "Local pages + reviews strategy lifted calls across all locations. Transparent, methodical, effective." },
             ].map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
-              >
+              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}>
                 <Card className="rounded-2xl bg-white dark:bg-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
                   <CardContent className="pt-6 text-sm">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-10 w-10 place-content-center rounded-full bg-gradient-to-br from-slate-200 to-slate-300 text-slate-700 dark:from-slate-700 dark:to-slate-600">
-                        {t.name.charAt(0)}
-                      </div>
+                      <div className="grid h-10 w-10 place-content-center rounded-full bg-gradient-to-br from-slate-200 to-slate-300 text-slate-700 dark:from-slate-700 dark:to-slate-600">{t.name.charAt(0)}</div>
                       <div>
                         <div className="font-medium text-slate-900 dark:text-white">{t.name}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">{t.role}</div>
@@ -511,9 +457,7 @@ export default function SEOPricingLandingPage() {
                     </div>
                     <div className="mt-3 flex items-center gap-1 text-yellow-500" aria-label="5 stars">
                       {Array.from({ length: 5 }).map((_, s) => (
-                        <svg key={s} viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                          <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </svg>
+                        <svg key={s} viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                       ))}
                     </div>
                     <p className="mt-3 italic text-slate-700 dark:text-slate-300">“{t.quote}”</p>
@@ -533,34 +477,19 @@ export default function SEOPricingLandingPage() {
           <div className="max-w-3xl mx-auto space-y-6">
             <div>
               <h3 className="font-semibold text-lg">How long before I see results?</h3>
-              <p className="mt-2 text-slate-300">
-                SEO is a long-term investment. Early improvements often appear in <strong>2–3 months</strong> as we fix
-                foundations and optimize your content. More consistent ranking lifts and traffic growth typically occur
-                between <strong>months 4–6</strong>, with stronger compounding results beyond month 6. Unlike ads, SEO
-                continues to pay off long after the work is done.
-              </p>
+              <p className="mt-2 text-slate-300">SEO is a long-term investment. Early improvements often appear in <strong>2–3 months</strong> as we fix foundations and optimize your content. More consistent ranking lifts and traffic growth typically occur between <strong>months 4–6</strong>, with stronger compounding results beyond month 6. Unlike ads, SEO continues to pay off long after the work is done.</p>
             </div>
             <div>
               <h3 className="font-semibold text-lg">Do I need a contract?</h3>
-              <p className="mt-2 text-slate-300">
-                No. We don’t lock clients into long-term contracts. Our services are <strong>month-to-month</strong> so
-                you have full flexibility. We aim to earn your trust with results, not paperwork.
-              </p>
+              <p className="mt-2 text-slate-300">No. We don’t lock clients into long-term contracts. Our services are <strong>month-to-month</strong> so you have full flexibility. We aim to earn your trust with results, not paperwork.</p>
             </div>
             <div>
               <h3 className="font-semibold text-lg">Can I switch packages?</h3>
-              <p className="mt-2 text-slate-300">
-                Yes. Your business isn’t static, and neither is your SEO. You can upgrade, downgrade, or move to a custom
-                plan anytime. We’ll recommend changes if we see a better fit for your goals.
-              </p>
+              <p className="mt-2 text-slate-300">Yes. Your business isn’t static, and neither is your SEO. You can upgrade, downgrade, or move to a custom plan anytime. We’ll recommend changes if we see a better fit for your goals.</p>
             </div>
             <div>
               <h3 className="font-semibold text-lg">Do you provide reports?</h3>
-              <p className="mt-2 text-slate-300">
-                Absolutely. We do <strong>monthly check-ins</strong> where we review progress, quick wins, and next steps
-                with you. Every <strong>quarter</strong>, you’ll receive a comprehensive report covering rankings,
-                traffic, conversions, and competitor movement — so you always know how your SEO investment is performing.
-              </p>
+              <p className="mt-2 text-slate-300">Absolutely. We do <strong>monthly check-ins</strong> where we review progress, quick wins, and next steps with you. Every <strong>quarter</strong>, you’ll receive a comprehensive report covering rankings, traffic, conversions, and competitor movement — so you always know how your SEO investment is performing.</p>
             </div>
           </div>
         </Container>
@@ -569,31 +498,13 @@ export default function SEOPricingLandingPage() {
 
       {/* FINAL CTA */}
       <Section id="cta" className="relative text-white">
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_50%_10%,rgba(59,130,246,0.18),transparent_60%),linear-gradient(to_bottom,#0B1224,rgba(11,18,36,0.96))]"
-        />
-        {/* MOBILE: pad bottom so sticky bar doesn’t cover anything */}
-        <Container className="text-center pb-20 md:pb-0">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_50%_10%,rgba(59,130,246,0.18),transparent_60%),linear-gradient(to_bottom,#0B1224,rgba(11,18,36,0.96))]" />
+        <Container className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold">Ready to grow smarter with SEO?</h2>
           <p className="mt-3 text-slate-200/90">Transparent pricing. No contracts. Real traction.</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Button className={`${btnPrimary} w-full sm:w-auto`} asChild>
-              <a href="https://calendly.com/josephjoshua/discovery-call" target="_blank" rel="noreferrer">
-                Book My Free SEO Call
-              </a>
-            </Button>
-            <Button variant="outline" className={`${btnSecondary} w-full sm:w-auto`} asChild>
-              <a
-                href="#packages"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo("packages");
-                }}
-              >
-                See Packages
-              </a>
-            </Button>
+            <Button size="lg" className={btnPrimary} asChild><a href="https://calendly.com/josephjoshua/discovery-call" target="_blank" rel="noreferrer">Book My Free SEO Call</a></Button>
+            <Button size="lg" variant="outline" className={btnSecondary} asChild><a href="#packages" onClick={(e) => { e.preventDefault(); goTo('packages'); }}>See Packages</a></Button>
           </div>
         </Container>
       </Section>
@@ -601,9 +512,7 @@ export default function SEOPricingLandingPage() {
       {/* Sticky mobile CTA */}
       <div className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:bg-slate-900/80 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-3">
-          <Button asChild className="w-full rounded-2xl bg-[#1b2a4a] hover:bg-[#16233d] text-white">
-            <a href="https://calendly.com/josephjoshua/discovery-call">Book My Free SEO Call</a>
-          </Button>
+          <Button asChild className="w-full rounded-2xl bg-[#1b2a4a] hover:bg-[#16233d] text-white"><a href="https://calendly.com/josephjoshua/discovery-call">Book My Free SEO Call</a></Button>
         </div>
       </div>
 
@@ -612,15 +521,9 @@ export default function SEOPricingLandingPage() {
         <Container className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <span className="text-muted-foreground">© {new Date().getFullYear()} SEO Growth Studio</span>
           <div className="flex items-center gap-4 text-muted-foreground">
-            <a className="hover:text-[#1b2a4a] transition-colors" href="#packages">
-              Packages
-            </a>
-            <a className="hover:text-[#1b2a4a] transition-colors" href="#compare">
-              Compare
-            </a>
-            <a className="hover:text-[#1b2a4a] transition-colors" href="#faqs">
-              FAQs
-            </a>
+            <a className="hover:text-[#1b2a4a] transition-colors" href="#packages">Packages</a>
+            <a className="hover:text-[#1b2a4a] transition-colors" href="#compare">Compare</a>
+            <a className="hover:text-[#1b2a4a] transition-colors" href="#faqs">FAQs</a>
           </div>
         </Container>
       </footer>
