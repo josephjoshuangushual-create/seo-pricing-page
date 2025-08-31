@@ -11,7 +11,6 @@ export const viewport = "width=device-width, initial-scale=1";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
-      {/* Dark-friendly defaults so sections render correctly even before their own backgrounds load */}
       <body className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
         {children}
       </body>
