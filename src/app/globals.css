@@ -2,17 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ----- Global Styles ----- */
-html, body {
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  @apply antialiased bg-white text-slate-900 dark:bg-slate-950 dark:text-white;
-}
-
-/* Optional: smooth transitions for dark/light */
-* {
-  @apply transition-colors duration-200;
-}
+/* Optional tweaks */
+html { scroll-behavior: smooth; }
