@@ -13,13 +13,12 @@
     "react-dom": "18.2.0",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.312.0",
-
+    "typescript": "^5.3.3",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "@types/node": "^20.11.30",
-    "typescript": "^5.3.3",
-    "autoprefixer": "^10.4.16",
+    "tailwindcss": "^3.3.5",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
+    "autoprefixer": "^10.4.16"
   }
 }
