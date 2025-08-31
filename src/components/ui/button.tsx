@@ -4,13 +4,13 @@ import * as React from "react";
 type Variant = "default" | "outline";
 type Size = "sm" | "md" | "lg";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = {
   asChild?: boolean;
   variant?: Variant;
   size?: Size;
   className?: string;
   children: React.ReactNode;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const base =
   "inline-flex items-center justify-center rounded-2xl font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed";
@@ -36,8 +36,8 @@ export function Button({
 }: ButtonProps) {
   const cls = [base, variants[variant], sizes[size], className].join(" ");
 
+  // When asChild is true, we clone the child (e.g. <a>) and apply button classes
   if (asChild && React.isValidElement(children)) {
-    // Clone the child (e.g. <a>) and inject our classes/props
     return React.cloneElement(children as React.ReactElement, {
       className: [cls, (children as any).props?.className || ""].join(" "),
       ...props,
@@ -50,5 +50,3 @@ export function Button({
     </button>
   );
 }
-
-export default Button;
