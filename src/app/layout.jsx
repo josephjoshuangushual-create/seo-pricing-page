@@ -1,4 +1,4 @@
-// src/app/layout.tsx
+// src/app/layout.jsx
 import "./globals.css";
 
 export const metadata = {
@@ -6,11 +6,8 @@ export const metadata = {
   description: "SEO pricing landing page",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport = "width=device-width, initial-scale=1";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
@@ -18,3 +15,6 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
         {children}
       </body>
+    </html>
+  );
+}
