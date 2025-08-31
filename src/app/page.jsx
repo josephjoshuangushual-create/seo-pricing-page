@@ -393,11 +393,11 @@ export default function SEOPricingLandingPage() {
               <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 w-full max-w-md">
                 <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">ROI Calculator</h3>
                 <label className="block mb-2 text-sm">Monthly Visitors</label>
-                <input type="number" value={visitors} onChange={(e) => setVisitors(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
+<input type="number" value={visitors} onChange={(e) => setVisitors(Number(e.target.value))} className="w-full mb-4 rounded border p-2 text-black" />
                 <label className="block mb-2 text-sm">Conversion Rate (%)</label>
-                <input type="number" value={conversion} onChange={(e) => setConversion(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
+<input type="number" value={conversion} onChange={(e) => setConversion(Number(e.target.value))} className="w-full mb-4 rounded border p-2 text-black" />
                 <label className="block mb-2 text-sm">Value per Lead ($)</label>
-                <input type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} className="w-full mb-4 rounded border p-2" />
+<input type="number" value={value} onChange={(e) => setValue(Number(e.target.value))} className="w-full mb-4 rounded border p-2 text-black" />
                 <p className="mt-2 text-slate-800 dark:text-slate-200">Estimated Leads: {leads}</p>
                 <p className="mb-4 text-slate-800 dark:text-slate-200">Estimated Revenue: ${revenue}</p>
                 <div className="flex justify-end gap-3">
