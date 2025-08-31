@@ -1,4 +1,3 @@
-@@ -1,19 +1,13 @@
 // src/app/layout.tsx
 import "./globals.css";
 
