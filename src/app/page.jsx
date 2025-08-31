@@ -410,27 +410,23 @@ export default function SEOPricingLandingPage() {
                 {/* ROI inputs: force black text */}
                 <label className="block mb-2 text-sm">Monthly Visitors</label>
                 <input
-                  type="number"
-                  value={visitors}
-                  onChange={(e) => setVisitors(Number(e.target.value))}
-                  className="w-full mb-4 rounded border p-2 text-black placeholder-slate-500 bg-white"
-                />
-
-                <label className="block mb-2 text-sm">Conversion Rate (%)</label>
-                <input
-                  type="number"
-                  value={conversion}
-                  onChange={(e) => setConversion(Number(e.target.value))}
-                  className="w-full mb-4 rounded border p-2 text-black placeholder-slate-500 bg-white"
-                />
-
-                <label className="block mb-2 text-sm">Value per Lead ($)</label>
-                <input
-                  type="number"
-                  value={value}
-                  onChange={(e) => setValue(Number(e.target.value))}
-                  className="w-full mb-4 rounded border p-2 text-black placeholder-slate-500 bg-white"
-                />
+  type="number"
+  value={visitors}
+  onChange={(e) => setVisitors(Number(e.target.value))}
+  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
+/>
+<input
+  type="number"
+  value={conversion}
+  onChange={(e) => setConversion(Number(e.target.value))}
+  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
+/>
+<input
+  type="number"
+  value={value}
+  onChange={(e) => setValue(Number(e.target.value))}
+  className="w-full mb-4 rounded border p-2 text-black placeholder:text-black/60 bg-white"
+/>
 
                 <p className="mt-2 text-slate-800 dark:text-slate-200">Estimated Leads: {leads}</p>
                 <p className="mb-4 text-slate-800 dark:text-slate-200">Estimated Revenue: ${revenue}</p>
